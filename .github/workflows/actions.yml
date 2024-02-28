@@ -1,0 +1,21 @@
+name: Preparant producció
+run-name: ${{ github.actor }}
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  Pujar-a-Produccio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtenint codi
+        uses: actions/checkout@v4
+      - name: pujant producció
+        run: |
+          echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
+          chmod 600 ~/prod_key.pem
+          cd ${{ github.workspace }}
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22ivabarsan/web/ivan-projects.daw.inspedralbes.cat/public_html/actions
