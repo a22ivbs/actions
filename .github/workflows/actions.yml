@@ -13,7 +13,12 @@ jobs:
     steps:
       - name: Obtenint codi
         uses: actions/checkout@v4
-      - name: pujant producció
+      - name: Instala dependencies
+        run: |
+        cd ${{ github.workspace }}
+        npm install
+        npm run build
+      - name: Subiendo a vue
         run: |
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
           chmod 600 ~/prod_key.pem
