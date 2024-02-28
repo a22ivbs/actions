@@ -15,8 +15,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Instala dependencies
         run: |
-          cd ${{ github.workspace }}
-          npm install
+          cd ${{ github.workspace }}/actions-vue
+          npm ci
           npm run build
 
       - name: Subiendo a vue
