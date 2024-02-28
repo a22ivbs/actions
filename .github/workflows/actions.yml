@@ -23,4 +23,4 @@ jobs:
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
           chmod 600 ~/prod_key.pem
           cd ${{ github.workspace }}
-          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22ivabarsan/web/ivan-projects.daw.inspedralbes.cat/public_html/actions
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./actions-vue/dist/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22ivabarsan/web/ivan-projects.daw.inspedralbes.cat/public_html/actions
